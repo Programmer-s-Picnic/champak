@@ -1,0 +1,1440 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>25th Anniversary: Itinerary and Lyrical Open Maps</title>
+  <meta name="description"
+    content="A beautiful 25th wedding anniversary route plan from Pandeypur Varanasi to Chopan sunrise, Bhandari Mai Ahraura, home cricket, cake cutting and batti chokha dinner, with lyrical OpenStreetMap route animation." />
+  <meta name="keywords"
+    content="25th anniversary itinerary, Chopan sunrise, Bhandari Mai Ahraura, OpenStreetMap, Varanasi anniversary trip, batti chokha dinner, family cricket" />
+  <meta name="author" content="Champak Roy" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="25th Anniversary: Chopan Sunrise, Bhandari Mai, Cricket and Batti Chokha" />
+  <meta property="og:description"
+    content="A complete silver anniversary day plan with a lovely interactive OpenStreetMap route animation." />
+  <meta property="og:image" content="anniversary-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#f59e0b" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8321261883090494"
+    crossorigin="anonymous"></script>
+  <script src="https://varanasi-software-junction.github.io/search/branding/branding.js"></script>
+  <script src="https://programmer-s-picnic.github.io/json-images/find-on-page.js"></script>
+  <script src="https://programmer-s-picnic.github.io/json-images/contact_champak.js"></script>
+
+  <style>
+    :root {
+      --bg: #fff7ed;
+      --card: #ffffff;
+      --ink: #241407;
+      --muted: #7c5b35;
+      --saffron: #f59e0b;
+      --deep: #9a3412;
+      --line: #fed7aa;
+      --soft: #ffedd5;
+      --green: #166534;
+      --blue: #075985;
+      --rose: #be123c;
+      --shadow: 0 22px 70px rgba(154, 52, 18, .14);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 90% 8%, rgba(245, 158, 11, .34), transparent 32rem),
+        radial-gradient(circle at 8% 20%, rgba(251, 191, 36, .22), transparent 25rem),
+        linear-gradient(180deg, #fff7ed, #fffbeb 48%, #fff7ed);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit
+    }
+
+    .wrap {
+      width: min(1180px, 92vw);
+      margin: auto
+    }
+
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255, 247, 237, .88);
+      backdrop-filter: blur(13px);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .topnav .wrap {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 950;
+      color: #7c2d12
+    }
+
+    .brand-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #f59e0b;
+      box-shadow: 0 0 0 6px rgba(245, 158, 11, .16)
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .navlinks a {
+      padding: 8px 10px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 850;
+      color: #7c2d12
+    }
+
+    .navlinks a:hover {
+      background: #ffedd5
+    }
+
+    .hero {
+      padding: 48px 0 28px;
+      position: relative
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      right: 2vw;
+      top: 28px;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fbbf24 0 28%, #f59e0b 29% 58%, transparent 60%);
+      opacity: .25;
+      z-index: -1
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      color: var(--deep);
+      font-weight: 900;
+      box-shadow: 0 10px 24px rgba(154, 52, 18, .08)
+    }
+
+    h1 {
+      font-size: clamp(2.15rem, 5.3vw, 5.4rem);
+      line-height: .96;
+      margin: 16px 0 12px;
+      color: #7c2d12;
+      letter-spacing: -.055em
+    }
+
+    .lead {
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      color: var(--muted);
+      max-width: 900px
+    }
+
+    .subline {
+      font-weight: 900;
+      color: #9a3412;
+      margin-top: 14px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      margin: 22px 0
+    }
+
+    .card {
+      grid-column: span 4;
+      background: rgba(255, 255, 255, .9);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(9px)
+    }
+
+    .card.big {
+      grid-column: span 8
+    }
+
+    .card.full {
+      grid-column: 1/-1
+    }
+
+    .card.half {
+      grid-column: span 6
+    }
+
+    .card h2,
+    .card h3 {
+      margin-top: 0;
+      color: #7c2d12
+    }
+
+    .time {
+      font-weight: 950;
+      color: #b45309
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: #fffaf0;
+      border: 1px solid var(--line);
+      padding: 16px;
+      border-radius: 22px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .step:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: linear-gradient(#f59e0b, #b45309)
+    }
+
+    .step b {
+      color: #7c2d12
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      color: #92400e;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: .86rem;
+      font-weight: 900
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      border: 0;
+      background: #d97706;
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-weight: 950;
+      box-shadow: 0 14px 30px rgba(217, 119, 6, .22);
+      cursor: pointer;
+      transition: .18s ease
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #7c2d12;
+      border: 1px solid var(--line)
+    }
+
+    .btn.blue {
+      background: #0369a1
+    }
+
+    .btn.green {
+      background: #15803d
+    }
+
+    .btn.rose {
+      background: #be123c
+    }
+
+    .btn:hover {
+      transform: translateY(-1px)
+    }
+
+    .note {
+      background: #fff7ed;
+      border-left: 5px solid var(--saffron);
+      padding: 14px 16px;
+      border-radius: 16px;
+      color: #69320b
+    }
+
+    ul.clean {
+      padding-left: 1.2rem
+    }
+
+    li {
+      margin: .38rem 0
+    }
+
+    footer {
+      padding: 30px 0 42px;
+      color: var(--muted);
+      text-align: center
+    }
+
+    .page-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px
+    }
+
+    .tab-btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #7c2d12;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 950;
+      cursor: pointer
+    }
+
+    .tab-btn.active {
+      background: #d97706;
+      color: white
+    }
+
+    .page-section {
+      display: none
+    }
+
+    .page-section.active {
+      display: block
+    }
+
+    .map-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(320px, .55fr);
+      gap: 18px;
+      align-items: stretch
+    }
+
+    .map-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden
+    }
+
+    .map-card:before {
+      content: "25";
+      position: absolute;
+      right: 22px;
+      top: -22px;
+      font-size: 9rem;
+      font-weight: 1000;
+      line-height: 1;
+      color: rgba(245, 158, 11, .10);
+      z-index: 0
+    }
+
+    .map-inner {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid #fed7aa
+    }
+
+    .map {
+      height: 620px;
+      width: 100%;
+      background: #fef3c7
+    }
+
+    .map-side {
+      display: grid;
+      gap: 14px
+    }
+
+    .route-moment {
+      background: linear-gradient(135deg, #fff, #fff7ed);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 18px;
+      box-shadow: 0 12px 34px rgba(154, 52, 18, .09);
+      position: relative;
+      overflow: hidden
+    }
+
+    .route-moment:after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, .13);
+      right: -28px;
+      bottom: -28px
+    }
+
+    .route-moment h3 {
+      margin: 0 0 4px;
+      color: #7c2d12
+    }
+
+    .route-moment p {
+      margin: 6px 0;
+      color: var(--muted)
+    }
+
+    .route-no {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background: #d97706;
+      color: white;
+      font-weight: 950;
+      margin-bottom: 10px
+    }
+
+    .control-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0 0
+    }
+
+    .mini-btn {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-weight: 850;
+      color: #7c2d12;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: .9rem
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px
+    }
+
+    .legend span {
+      background: #fff7ed;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: .88rem;
+      color: #7c2d12;
+      font-weight: 850
+    }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 18px
+    }
+
+    .leaflet-popup-content {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif
+    }
+
+    .popup-title {
+      font-weight: 950;
+      color: #7c2d12;
+      font-size: 1rem
+    }
+
+    .popup-note {
+      color: #7c5b35;
+      margin: .2rem 0 .55rem
+    }
+
+    .spark {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px
+    }
+
+    .spark div {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #fffaf0;
+      padding: 14px;
+      text-align: center
+    }
+
+    .spark b {
+      display: block;
+      color: #7c2d12;
+      font-size: 1.2rem
+    }
+
+    .spark span {
+      font-size: .88rem;
+      color: var(--muted)
+    }
+
+    .route-ribbon {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 28px;
+      background: linear-gradient(90deg, #7c2d12, #d97706, #f59e0b);
+      color: white;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap
+    }
+
+    .route-ribbon b {
+      font-size: 1.15rem
+    }
+
+    .route-ribbon span {
+      opacity: .92
+    }
+
+    .marker-heart {
+      font-size: 28px;
+      filter: drop-shadow(0 7px 8px rgba(0, 0, 0, .28))
+    }
+
+    .travel-card {
+      grid-column: span 3;
+      text-align: center
+    }
+
+    .travel-card b {
+      display: block;
+      color: #7c2d12;
+      font-size: 1.35rem
+    }
+
+    .travel-card span {
+      color: var(--muted)
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(36, 20, 7, .52);
+      backdrop-filter: blur(8px);
+      z-index: 5000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px
+    }
+
+    .modal-backdrop.show {
+      display: flex
+    }
+
+    .route-modal {
+      width: min(1100px, 96vw);
+      max-height: 92vh;
+      overflow: auto;
+      background: linear-gradient(180deg, #fffaf0, #ffffff);
+      border: 1px solid #fed7aa;
+      border-radius: 34px;
+      box-shadow: 0 35px 120px rgba(36, 20, 7, .42);
+      padding: 18px;
+      transform: translateY(18px) scale(.98);
+      opacity: 0;
+      transition: .24s ease
+    }
+
+    .modal-backdrop.show .route-modal {
+      transform: translateY(0) scale(1);
+      opacity: 1
+    }
+
+    .route-modal.fullscreen-mode {
+      width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+      padding: 18px 18px 22px
+    }
+
+    .route-modal.fullscreen-mode .modal-map {
+      height: calc(100vh - 285px);
+      min-height: 430px
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 8px 8px 14px
+    }
+
+    .modal-head h2 {
+      margin: 10px 0 6px;
+      color: #7c2d12;
+      font-size: clamp(1.45rem, 3vw, 2.4rem);
+      line-height: 1.05
+    }
+
+    .modal-head p {
+      margin: 0;
+      color: #7c5b35
+    }
+
+    .modal-title-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .modal-close {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid #fed7aa;
+      background: #fff;
+      color: #7c2d12;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(154, 52, 18, .12)
+    }
+
+    .modal-map-wrap {
+      border: 1px solid #fed7aa;
+      border-radius: 26px;
+      overflow: hidden;
+      background: #fef3c7;
+      position: relative
+    }
+
+    .modal-map {
+      height: min(55vh, 560px);
+      min-height: 360px;
+      width: 100%
+    }
+
+    .modal-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 14px 0 8px
+    }
+
+    .route-progress {
+      height: 12px;
+      background: #ffedd5;
+      border: 1px solid #fed7aa;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 14px 4px 0
+    }
+
+    .route-progress div {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #be123c, #d97706, #f59e0b);
+      transition: width .35s ease
+    }
+
+    .modal-stops {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 10px
+    }
+
+    .modal-stop {
+      border: 1px solid #fed7aa;
+      border-radius: 18px;
+      background: #fff;
+      padding: 10px;
+      text-align: center;
+      color: #7c5b35;
+      font-size: .9rem;
+      transition: .25s ease
+    }
+
+    .modal-stop.active {
+      background: #7c2d12;
+      color: #fff;
+      transform: translateY(-2px)
+    }
+
+    .modal-stop b {
+      display: block;
+      color: inherit
+    }
+
+    .car-pin {
+      position: relative;
+      width: 58px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      filter: drop-shadow(0 10px 12px rgba(0, 0, 0, .33))
+    }
+
+    .car-body {
+      position: relative;
+      width: 50px;
+      height: 24px;
+      border-radius: 18px 18px 12px 12px;
+      background: linear-gradient(135deg, #be123c, #f59e0b);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, .22)
+    }
+
+    .car-body:before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      top: -12px;
+      width: 25px;
+      height: 15px;
+      border-radius: 16px 16px 5px 5px;
+      background: linear-gradient(135deg, #fff7ed, #fed7aa);
+      border: 2px solid #fff
+    }
+
+    .car-body:after {
+      content: "25";
+      position: absolute;
+      right: 8px;
+      top: 3px;
+      font-size: 10px;
+      font-weight: 1000;
+      color: white
+    }
+
+    .car-wheel {
+      position: absolute;
+      bottom: -6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #241407;
+      border: 2px solid #fff
+    }
+
+    .car-wheel.left {
+      left: 8px
+    }
+
+    .car-wheel.right {
+      right: 8px
+    }
+
+    .car-sparkle {
+      position: absolute;
+      right: -6px;
+      top: -11px;
+      font-size: 16px;
+      animation: twinkle 1.2s infinite ease-in-out
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        transform: scale(.9);
+        opacity: .7
+      }
+
+      50% {
+        transform: scale(1.15);
+        opacity: 1
+      }
+    }
+
+    .lyric-panel {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 600;
+      background: rgba(255, 255, 255, .92);
+      border: 1px solid #fed7aa;
+      border-radius: 22px;
+      padding: 12px 14px;
+      box-shadow: 0 18px 44px rgba(36, 20, 7, .14);
+      backdrop-filter: blur(8px)
+    }
+
+    .lyric-panel b {
+      display: block;
+      color: #7c2d12
+    }
+
+    .lyric-panel span {
+      color: #7c5b35;
+      font-size: .95rem
+    }
+
+    @media(max-width:960px) {
+      .map-shell {
+        grid-template-columns: 1fr
+      }
+
+      .map {
+        height: 510px
+      }
+
+      .card.half {
+        grid-column: 1/-1
+      }
+    }
+
+    @media(max-width:800px) {
+      .modal-stops {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .modal-map {
+        min-height: 320px
+      }
+
+      .modal-controls .btn {
+        flex: 1 1 110px
+      }
+
+      .card,
+      .card.big,
+      .travel-card {
+        grid-column: 1/-1
+      }
+
+      .step {
+        grid-template-columns: 1fr
+      }
+
+      .topnav .wrap {
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      .map {
+        height: 430px
+      }
+
+      h1 {
+        letter-spacing: -.035em
+      }
+
+      .route-modal.fullscreen-mode .modal-map {
+        height: calc(100vh - 335px);
+        min-height: 330px
+      }
+    }
+
+    @media print {
+
+      .topnav,
+      .actions,
+      .no-print,
+      .page-tabs,
+      .control-row,
+      .modal-backdrop {
+        display: none !important
+      }
+
+      body {
+        background: #fff
+      }
+
+      .card,
+      .map-card,
+      .route-moment {
+        box-shadow: none;
+        break-inside: avoid
+      }
+
+      .page-section {
+        display: block !important
+      }
+
+      .map {
+        height: 420px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="topnav">
+    <div class="wrap">
+      <div class="brand-mini"><span class="brand-dot"></span><span>25th Anniversary Plan</span></div>
+      <div class="navlinks">
+        <a href="#itinerary" onclick="showPage('itinerary')">Itinerary</a>
+        <a href="#maps" onclick="showPage('maps')">Open Maps</a>
+        <a href="#routeModal" onclick="openRouteModal()">Show Route</a>
+        <a href="#cricket" onclick="showPage('itinerary')">Cricket</a>
+        <a href="#dinner" onclick="showPage('itinerary')">Batti Chokha</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero wrap">
+    <span class="pill">Silver Anniversary • Worth 25 Years of Togetherness</span>
+    <h1>25 Years, One Sunrise, One Blessing, One Match</h1>
+    <p class="lead">A warm anniversary day starting before sunrise from Pandeypur, reaching Chopan Son River, taking
+      blessings at Bhandari Mai Ahraura, returning home for underhand cricket, cake cutting and a batti chokha dinner.
+    </p>
+    <p class="subline">Pandeypur → Chopan Sunrise → Bhandari Mai → Home Cricket → Batti Chokha</p>
+    <div class="page-tabs no-print">
+      <button class="tab-btn active" id="tab-itinerary" onclick="showPage('itinerary')">Itinerary Page</button>
+      <button class="tab-btn" id="tab-maps" onclick="showPage('maps')">Interactive Open Maps</button>
+    </div>
+    <div class="actions no-print">
+      <button class="btn" onclick="openRouteModal()">Show Lyrical Route</button>
+      <button class="btn secondary" onclick="window.print()">Print</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="itinerary" class="page-section active">
+      <section class="grid">
+        <article class="card">
+          <h2>Start</h2>
+          <p class="time">2:15 AM</p>
+          <p>Leave Pandeypur, Varanasi. Keep fuel, water, torch, power bank and light snacks ready before sleeping.</p>
+        </article>
+        <article class="card">
+          <h2>Sunrise</h2>
+          <p class="time">5:15–5:25 AM</p>
+          <p>Reach Chopan Son River / old bridge area before first light. Stay away from the river edge in darkness.</p>
+        </article>
+        <article class="card">
+          <h2>Finish</h2>
+          <p class="time">8:00 PM onward</p>
+          <p>End the day with family, cake, memories and a proper batti chokha dinner at home.</p>
+        </article>
+      </section>
+
+      <section class="card full">
+        <h2>Full Day Timeline</h2>
+        <div class="timeline">
+          <div class="step">
+            <div class="time">2:15 AM</div>
+            <div><b>Leave Pandeypur</b><br>Start early for a relaxed pre-sunrise arrival. Avoid rushing on night roads.
+            </div>
+          </div>
+          <div class="step">
+            <div class="time">4:45–5:00 AM</div>
+            <div><b>Reach Chopan Son River</b><br>Park safely near the old bridge/river side. Keep the camera ready
+              before sunrise colors begin.</div>
+          </div>
+          <div class="step">
+            <div class="time">5:15–5:25 AM</div>
+            <div><b>Sunrise photos and quiet anniversary moment</b><br>Take bridge silhouettes, river shots, couple
+              photos and one short family video.</div>
+          </div>
+          <div class="step">
+            <div class="time">6:15 AM</div>
+            <div><b>Leave Chopan</b><br>Start for Bhandari Mai, Ahraura. Stop for tea only if needed.</div>
+          </div>
+          <div class="step">
+            <div class="time">8:30–9:00 AM</div>
+            <div><b>Reach Bhandari Mai, Ahraura</b><br>Darshan, rest, photos and a peaceful family pause.</div>
+          </div>
+          <div class="step">
+            <div class="time">10:15 AM</div>
+            <div><b>Return to Varanasi</b><br>Start back before the day becomes too hot. Breakfast can be around
+              Ahraura/Narayanpur side.</div>
+          </div>
+          <div class="step">
+            <div class="time">12:00–1:00 PM</div>
+            <div><b>Reach home and rest</b><br>Keep the afternoon free. Everyone should rest before the evening fun.
+            </div>
+          </div>
+          <div class="step">
+            <div class="time">4:30–6:00 PM</div>
+            <div><b>Underhand Cricket Cup</b><br>Family match at home with soft ball, light rules and funny commentary.
+            </div>
+          </div>
+          <div class="step">
+            <div class="time">7:00 PM</div>
+            <div><b>Cake cutting and memories</b><br>Play a photo slideshow or ask family members to share one short
+              memory.</div>
+          </div>
+          <div class="step">
+            <div class="time">8:00 PM onward</div>
+            <div><b>Batti Chokha Dinner</b><br>A homely, memorable ending to the silver anniversary day.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cricket" class="grid">
+        <article class="card big">
+          <h2>Silver Anniversary Underhand Cricket Cup</h2>
+          <p><span class="badge">Match format</span> 5 overs per side, soft tennis ball or plastic ball, everyone gets
+            to bat.</p>
+          <ul class="clean">
+            <li>Teams: Team Husband vs Team Wife, or Team 25 Years vs Team Forever.</li>
+            <li>Only underhand bowling.</li>
+            <li>One-tip-one-hand catch can be out.</li>
+            <li>Anniversary couple gets 25 bonus runs.</li>
+            <li>Final over is called The Silver Over.</li>
+            <li>No hard hitting near windows or parked vehicles.</li>
+          </ul>
+        </article>
+        <aside class="card">
+          <h3>Things to keep ready</h3>
+          <ul class="clean">
+            <li>Soft ball</li>
+            <li>Plastic bat</li>
+            <li>Chalk or tape for crease</li>
+            <li>Water and chairs</li>
+            <li>Phone tripod for video</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="dinner" class="grid">
+        <article class="card big">
+          <h2>Batti Chokha Dinner</h2>
+          <p><span class="badge">Dinner title</span> Silver Anniversary Bhoj: Batti Chokha Night</p>
+          <ul class="clean">
+            <li>Batti with ghee</li>
+            <li>Baingan chokha</li>
+            <li>Aloo chokha</li>
+            <li>Tomato chutney and green chutney</li>
+            <li>Salad: onion, lemon, green chilli, cucumber</li>
+            <li>Dahi or raita, papad, pickle</li>
+            <li>Sweet ending: gur or kheer</li>
+          </ul>
+        </article>
+        <aside class="card">
+          <h3>Family signboard line</h3>
+          <p class="note">25 Years of Togetherness<br>Chopan Sunrise → Bhandari Mai Blessings → Family Cricket → Batti
+            Chokha</p>
+        </aside>
+      </section>
+    </section>
+
+    <section id="maps" class="page-section">
+      <section class="route-ribbon">
+        <div><b>Interactive Open Maps Route</b><br><span>Tap a stop, zoom the map, copy coordinates, or open
+            navigation.</span></div>
+        <div class="actions no-print" style="margin:0"><button class="btn rose" onclick="openRouteModal()">Show Lyrical
+            Route</button><span>Approx visual route, not a live traffic route.</span></div>
+      </section>
+
+      <section class="map-shell">
+        <div class="map-card">
+          <div class="map-inner">
+            <div id="openAnniversaryMap" class="map"></div>
+          </div>
+          <div class="legend no-print"><span>1. Pandeypur</span><span>2. Chopan Sunrise</span><span>3. Bhandari
+              Mai</span><span>4. Home Return</span></div>
+        </div>
+
+        <aside class="map-side">
+          <div class="route-moment"><span class="route-no">1</span>
+            <h3>Pandeypur, Varanasi</h3>
+            <p>Start at 2:15 AM. This is the beginning of the silver anniversary journey.</p>
+            <div class="control-row"><button class="mini-btn" onclick="focusStop('home')">Focus map</button><button
+                class="mini-btn" data-copy="25.353227, 82.987086">Copy GPS</button></div>
+          </div>
+          <div class="route-moment"><span class="route-no">2</span>
+            <h3>Chopan Son River Old Bridge</h3>
+            <p>Reach by 4:45–5:00 AM. Sunrise photos, river view, bridge silhouette.</p>
+            <div class="control-row"><button class="mini-btn" onclick="focusStop('chopan')">Focus map</button><a
+                class="mini-btn" target="_blank" rel="noopener"
+                href="https://www.openstreetmap.org/?mlat=24.535278&mlon=83.020833#map=15/24.535278/83.020833">Open
+                OSM</a><button class="mini-btn" data-copy="24.535278, 83.020833">Copy GPS</button></div>
+          </div>
+          <div class="route-moment"><span class="route-no">3</span>
+            <h3>Bhandari Devi Temple, Ahraura</h3>
+            <p>Reach around 8:30–9:00 AM. Darshan, rest and a peaceful family pause.</p>
+            <div class="control-row"><button class="mini-btn" onclick="focusStop('bhandari')">Focus map</button><a
+                class="mini-btn" target="_blank" rel="noopener"
+                href="https://www.openstreetmap.org/?mlat=25.035443&mlon=83.036894#map=15/25.035443/83.036894">Open
+                OSM</a><button class="mini-btn" data-copy="25.035443, 83.036894">Copy GPS</button></div>
+          </div>
+          <div class="route-moment"><span class="route-no">4</span>
+            <h3>Return Home</h3>
+            <p>Back to Pandeypur by afternoon, rest, then underhand cricket and batti chokha.</p>
+            <div class="control-row"><button class="mini-btn" onclick="fitFullRoute()">Show full route</button><button
+                class="mini-btn" onclick="openRouteModal()">Animate route</button><a class="mini-btn" target="_blank"
+                rel="noopener"
+                href="https://www.google.com/maps/dir/?api=1&origin=Pandeypur%2C%20Varanasi&destination=Pandeypur%2C%20Varanasi&waypoints=Chopan%20son-river%2C%20sonbhadra%20Chopan%20old%20bridge%7CBhandari%20Devi%20Temple%2C%20Ahraura%2C%20Mirzapur&travelmode=driving">Google
+                full route</a></div>
+          </div>
+        </aside>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="routeModalBackdrop" aria-hidden="true">
+    <div class="route-modal" id="routeModalBox" role="dialog" aria-modal="true" aria-labelledby="routeModalTitle">
+      <div class="modal-head">
+        <div>
+          <span class="pill">Animated Anniversary Route</span>
+          <h2 id="routeModalTitle">Pandeypur → Chopan → Bhandari Mai → Home</h2>
+          <p id="routeModalText">Tap Play to let the little anniversary car begin the journey.</p>
+        </div>
+        <div class="modal-title-actions">
+          <button class="mini-btn" onclick="toggleRouteFullscreen()" id="fullscreenBtn">Full Screen</button>
+          <button class="modal-close" onclick="closeRouteModal()" aria-label="Close route modal">×</button>
+        </div>
+      </div>
+      <div class="modal-map-wrap">
+        <div id="routePlayerMap" class="modal-map"></div>
+        <div class="lyric-panel"><b id="lyricTitle">The journey begins.</b><span id="lyricLine">From home to sunrise,
+            from blessings to laughter, the map becomes a memory.</span></div>
+      </div>
+      <div class="route-progress">
+        <div id="routeProgressFill"></div>
+      </div>
+      <div class="modal-controls">
+        <button class="btn secondary" onclick="prevRouteStop()">Prev</button>
+        <button class="btn" id="routePlayBtn" onclick="playRoute()">Play</button>
+        <button class="btn rose" onclick="stopRoute()">Stop</button>
+        <button class="btn green" onclick="nextRouteStop()">Next</button>
+        <button class="btn blue" onclick="resetRoute()">Reset</button>
+      </div>
+      <div class="modal-stops" id="modalStops"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">Programmers Picnic by Champak Roy • <span id="year"></span></div>
+  </footer>
+
+  <script>
+    let anniversaryMap, markers = {}, fullLine;
+    let routePlayerMap, routePlayerLine, movingMarker, routeTimer = null, routeIndex = 0;
+    let isAnimating = false;
+
+    const stops = {
+      home: { lat: 25.353227, lng: 82.987086, title: 'Pandeypur, Varanasi', note: 'Start at 2:15 AM. The silver anniversary journey begins here.', icon: '🏠' },
+      chopan: { lat: 24.535278, lng: 83.020833, title: 'Chopan Son River Old Bridge', note: 'Sunrise stop. Reach before first light for river and bridge photos.', icon: '🌅' },
+      bhandari: { lat: 25.035443, lng: 83.036894, title: 'Bhandari Devi Temple, Ahraura', note: 'Blessings stop after sunrise. Peaceful darshan and family pause.', icon: '🙏' }
+    };
+
+    const routeStops = [
+      { key: 'home', label: 'Start: Pandeypur', time: '2:15 AM', icon: '🏠', lat: 25.353227, lng: 82.987086, title: 'The home lights fade softly.', line: 'The road opens before sunrise, carrying twenty-five years of memories.' },
+      { key: 'chopan', label: 'Sunrise: Chopan Son River', time: '5:15 AM', icon: '🌅', lat: 24.535278, lng: 83.020833, title: 'The Son River receives the morning.', line: 'The bridge, the river, and the first light become the silver anniversary photograph.' },
+      { key: 'bhandari', label: 'Blessings: Bhandari Mai', time: '9:00 AM', icon: '🙏', lat: 25.035443, lng: 83.036894, title: 'The journey pauses for blessings.', line: 'After sunrise comes gratitude, a quiet temple moment, and a peaceful family smile.' },
+      { key: 'home2', label: 'Return Home', time: '12:30 PM', icon: '🏡', lat: 25.353227, lng: 82.987086, title: 'The road returns to celebration.', line: 'Home waits with underhand cricket, cake, laughter, and batti chokha.' }
+    ];
+
+    function makeIcon(symbol) {
+      return L.divIcon({
+        html: '<div class="marker-heart">' + symbol + '</div>',
+        className: 'custom-div-icon',
+        iconSize: [36, 36],
+        iconAnchor: [18, 30],
+        popupAnchor: [0, -28]
+      });
+    }
+
+    function makeCarIcon() {
+      return L.divIcon({
+        html: '<div class="car-pin"><div class="car-sparkle">✦</div><div class="car-body"><span class="car-wheel left"></span><span class="car-wheel right"></span></div></div>',
+        className: 'moving-div-icon',
+        iconSize: [58, 42],
+        iconAnchor: [29, 29],
+        popupAnchor: [0, -30]
+      });
+    }
+
+    function initMap() {
+      const el = document.getElementById('openAnniversaryMap');
+      if (!el || anniversaryMap) return;
+      anniversaryMap = L.map('openAnniversaryMap', { scrollWheelZoom: true, zoomControl: true });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }).addTo(anniversaryMap);
+      Object.keys(stops).forEach(key => {
+        const s = stops[key];
+        markers[key] = L.marker([s.lat, s.lng], { icon: makeIcon(s.icon) }).addTo(anniversaryMap)
+          .bindPopup('<div class="popup-title">' + s.title + '</div><div class="popup-note">' + s.note + '</div><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=' + s.lat + '&mlon=' + s.lng + '#map=15/' + s.lat + '/' + s.lng + '">Open in OpenStreetMap</a>');
+      });
+      const path = [[stops.home.lat, stops.home.lng], [stops.chopan.lat, stops.chopan.lng], [stops.bhandari.lat, stops.bhandari.lng], [stops.home.lat, stops.home.lng]];
+      fullLine = L.polyline(path, { color: '#d97706', weight: 5, opacity: .82, dashArray: '12,10' }).addTo(anniversaryMap);
+      L.polyline([[stops.home.lat, stops.home.lng], [stops.chopan.lat, stops.chopan.lng]], { color: '#be123c', weight: 3, opacity: .55 }).addTo(anniversaryMap);
+      fitFullRoute();
+      setTimeout(() => anniversaryMap.invalidateSize(), 250);
+    }
+
+    function focusStop(key) {
+      showPage('maps');
+      initMap();
+      const s = stops[key];
+      anniversaryMap.setView([s.lat, s.lng], 14, { animate: true });
+      markers[key].openPopup();
+    }
+
+    function fitFullRoute() {
+      showPage('maps');
+      initMap();
+      anniversaryMap.fitBounds(fullLine.getBounds(), { padding: [32, 32] });
+    }
+
+    function showPage(which) {
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(which).classList.add('active');
+      const tab = document.getElementById('tab-' + which);
+      if (tab) tab.classList.add('active');
+      location.hash = which;
+      if (which === 'maps') setTimeout(initMap, 80);
+    }
+
+    function initRoutePlayerMap() {
+      const el = document.getElementById('routePlayerMap');
+      if (!el || routePlayerMap) return;
+      routePlayerMap = L.map('routePlayerMap', { scrollWheelZoom: true, zoomControl: true });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }).addTo(routePlayerMap);
+      const path = routeStops.map(s => [s.lat, s.lng]);
+      routePlayerLine = L.polyline(path, { color: '#be123c', weight: 5, opacity: .55, dashArray: '10,10' }).addTo(routePlayerMap);
+      L.polyline(path, { color: '#f59e0b', weight: 12, opacity: .13 }).addTo(routePlayerMap);
+      routeStops.forEach((s, i) => {
+        L.marker([s.lat, s.lng], { icon: makeIcon(s.icon) }).addTo(routePlayerMap)
+          .bindPopup('<div class="popup-title">' + (i + 1) + '. ' + s.label + '</div><div class="popup-note">' + s.time + '</div>');
+      });
+      movingMarker = L.marker([routeStops[0].lat, routeStops[0].lng], { icon: makeCarIcon(), zIndexOffset: 999 }).addTo(routePlayerMap);
+      routePlayerMap.fitBounds(routePlayerLine.getBounds(), { padding: [40, 40] });
+      renderModalStops();
+      updateRoutePlayer(0, false);
+      setTimeout(() => routePlayerMap.invalidateSize(), 250);
+    }
+
+    function renderModalStops() {
+      const box = document.getElementById('modalStops');
+      if (!box) return;
+      box.innerHTML = routeStops.map((s, i) => '<div class="modal-stop" id="modalStop' + i + '"><b>' + s.time + '</b>' + s.label + '</div>').join('');
+    }
+
+    function easeInOutSine(t) {
+      return -(Math.cos(Math.PI * t) - 1) / 2;
+    }
+
+    function interpolate(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function animateCarTo(fromIndex, toIndex, done) {
+      if (!movingMarker || !routePlayerMap) return;
+      isAnimating = true;
+      const from = routeStops[fromIndex];
+      const to = routeStops[toIndex];
+      const start = performance.now();
+      const duration = 2600;
+
+      function frame(now) {
+        if (!isAnimating) return;
+        const raw = Math.min((now - start) / duration, 1);
+        const t = easeInOutSine(raw);
+        const wave = Math.sin(t * Math.PI) * 0.015;
+        const lat = interpolate(from.lat, to.lat, t) + wave;
+        const lng = interpolate(from.lng, to.lng, t);
+        movingMarker.setLatLng([lat, lng]);
+        if (raw < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          movingMarker.setLatLng([to.lat, to.lng]);
+          isAnimating = false;
+          if (done) done();
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function updateRoutePlayer(i, animate = true) {
+      const oldIndex = routeIndex;
+      routeIndex = (i + routeStops.length) % routeStops.length;
+      const s = routeStops[routeIndex];
+
+      document.querySelectorAll('.modal-stop').forEach(x => x.classList.remove('active'));
+      const active = document.getElementById('modalStop' + routeIndex);
+      if (active) active.classList.add('active');
+
+      const fill = document.getElementById('routeProgressFill');
+      if (fill) fill.style.width = (routeIndex / (routeStops.length - 1)) * 100 + '%';
+
+      const text = document.getElementById('routeModalText');
+      if (text) text.textContent = s.time + ' — ' + s.label + '. The route is moving like a memory, not like a race.';
+
+      const lyricTitle = document.getElementById('lyricTitle');
+      const lyricLine = document.getElementById('lyricLine');
+      if (lyricTitle) lyricTitle.textContent = s.title;
+      if (lyricLine) lyricLine.textContent = s.line;
+
+      if (routePlayerMap) {
+        routePlayerMap.flyTo([s.lat, s.lng], routeIndex === 0 || routeIndex === 3 ? 11 : 13, { animate: true, duration: 1.4 });
+      }
+
+      if (movingMarker) {
+        if (animate && oldIndex !== routeIndex) {
+          animateCarTo(oldIndex, routeIndex);
+        } else {
+          movingMarker.setLatLng([s.lat, s.lng]);
+        }
+      }
+    }
+
+    function openRouteModal() {
+      const modal = document.getElementById('routeModalBackdrop');
+      if (modal) {
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+      setTimeout(() => {
+        initRoutePlayerMap();
+        if (routePlayerMap) routePlayerMap.invalidateSize();
+      }, 90);
+    }
+
+    function closeRouteModal() {
+      stopRoute();
+      const modal = document.getElementById('routeModalBackdrop');
+      if (modal) {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    function nextRouteStop() {
+      stopRoute(false);
+      updateRoutePlayer(routeIndex + 1, true);
+    }
+
+    function prevRouteStop() {
+      stopRoute(false);
+      updateRoutePlayer(routeIndex - 1, true);
+    }
+
+    function resetRoute() {
+      stopRoute(false);
+      updateRoutePlayer(0, true);
+    }
+
+    function playRoute() {
+      stopRoute(false);
+      const btn = document.getElementById('routePlayBtn');
+      if (btn) btn.textContent = 'Playing';
+      if (routeIndex >= routeStops.length - 1) updateRoutePlayer(0, false);
+      routeTimer = setInterval(() => {
+        if (isAnimating) return;
+        if (routeIndex >= routeStops.length - 1) {
+          stopRoute();
+          return;
+        }
+        updateRoutePlayer(routeIndex + 1, true);
+      }, 3100);
+    }
+
+    function stopRoute(changeText = true) {
+      if (routeTimer) {
+        clearInterval(routeTimer);
+        routeTimer = null;
+      }
+      isAnimating = false;
+      const btn = document.getElementById('routePlayBtn');
+      if (btn && changeText) btn.textContent = 'Play';
+    }
+
+    function toggleRouteFullscreen() {
+      const box = document.getElementById('routeModalBox');
+      const btn = document.getElementById('fullscreenBtn');
+      if (!box) return;
+      box.classList.toggle('fullscreen-mode');
+      const full = box.classList.contains('fullscreen-mode');
+      if (btn) btn.textContent = full ? 'Exit Full Screen' : 'Full Screen';
+      setTimeout(() => { if (routePlayerMap) routePlayerMap.invalidateSize(); }, 250);
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeRouteModal();
+      if (e.key === 'ArrowRight' && document.getElementById('routeModalBackdrop').classList.contains('show')) nextRouteStop();
+      if (e.key === 'ArrowLeft' && document.getElementById('routeModalBackdrop').classList.contains('show')) prevRouteStop();
+    });
+
+    document.addEventListener('click', e => {
+      const b = document.getElementById('routeModalBackdrop');
+      if (e.target === b) closeRouteModal();
+    });
+
+    (function () {
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
+      if (location.hash.replace('#', '') === 'maps') showPage('maps');
+      document.querySelectorAll('[data-copy]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(btn.getAttribute('data-copy'));
+            const old = btn.textContent;
+            btn.textContent = 'Copied';
+            setTimeout(() => btn.textContent = old, 1200);
+          } catch (e) {
+            alert('Copy failed. Long press and copy manually.');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
