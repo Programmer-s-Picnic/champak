@@ -15,8 +15,9 @@
 </head>
 
 <body>
-    <button onclick="doShow('divcontent')">Show</button><button onclick="doHide('divcontent')">Hide</button>
-    <div id="divcontent">
+    <button id="b1" onclick="doShow('divcontent');doHide('b1')">Start</button>
+    <button class="hide" onclick="doHide('divcontent')">Hide</button>
+    <div class="hide" id="divcontent">
         <h1>Content</h1>
     </div>
     <script>
