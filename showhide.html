@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Hide</title>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="doShow('divcontent')">Show</button><button onclick="doHide('divcontent')">Hide</button>
+    <div id="divcontent">
+        <h1>Content</h1>
+    </div>
+    <script>
+        function doHide(id) {
+            document.querySelector(`#${id}`).classList.add("hide");
+        }
+        function doShow(id) {
+            document.querySelector(`#${id}`).classList.remove("hide");
+        }
+    </script>
+</body>
+
+</html>
